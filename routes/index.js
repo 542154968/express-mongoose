@@ -32,13 +32,20 @@ router.get('/', function(req, res, next) {
 
 router.get('/test', async function(req, res, next) {
     try {
-        var count = await User.count()
+        var date = new Date()
+        // id之类的不要查了之后自增1，高并发的时候会有问题 建议使用随机数
         var user = new User({
-            uid: count + 1,
+            uid:
+                date
+                    .getTime()
+                    .toString()
+                    .slice(0, 10) +
+                '-' +
+                ~~(Math.random() * 10000) +
+                '-user',
             username: 'nuanfeng',
-            createTime: new Date()
+            createTime: date
         })
-        // var status = await test()
         await user.save()
         var doc = await User.find()
         res.status(200)
