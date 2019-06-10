@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var Login = mongoose.model('Login')
 
 router.get('/', function(req, res, next) {
-    res.render('login', { title: 'Express' })
+    res.render('login', { title: 'Login' })
 })
 
 router.post('/', async function(req, res, next) {

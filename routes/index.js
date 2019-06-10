@@ -42,7 +42,7 @@ router.get('/test', async function(req, res, next) {
                     .slice(0, 10) +
                 '-' +
                 ~~(Math.random() * 10000) +
-                '-user',
+                '-USER',
             username: 'nuanfeng',
             createTime: date
         })

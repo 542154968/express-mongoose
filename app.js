@@ -13,7 +13,6 @@ var loginRouter = require('./routes/login')
 var listRouter = require('./routes/list')
 
 var app = express()
-var router = express.Router()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -28,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // 中间件是按照当前代码从上往下这个顺序执行的
 // 这里我们可以做token验证等
 // 必须调用next 不然不到下个中间件中
-// 如果这个中间件写在了路由的下面 那么这个中间件就无效了 因为先匹配了 /user啥的 没有next
+// 如果这个中间件写在了路由的下面 那么这个中间件就无效了 因为先匹配了 /user啥的里面可能没有next就无法触发中间件 所以在这里管理比较方便
+// 中间件还有路由级别的
 
 app.use(function(req, res, next) {
     console.log('验证token')
